@@ -94,7 +94,7 @@ function draw() {
     "#FF00FF"
   ];
   horses.sort((h1, h2) => {
-    return h1.step - h2.step;
+    return h2.step - h1.step;
   });
   textAlign(CENTER, CENTER);
   textSize(18);
