@@ -32,7 +32,7 @@ class Horse {
       }
 
       let w = width / 2.5;
-      let h = w / 2.0;
+      let h = w / 2.2;
 
       let x = cos(-this.step) * (w + this.yoko) + width / 2;
       let y = sin(-this.step) * (h + this.yoko) + height / 2;
