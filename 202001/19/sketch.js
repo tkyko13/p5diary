@@ -38,9 +38,9 @@ function beansMill(_n, _x, _y, _w, _h) {
     fill("#7b5544");
     strokeWeight(1);
     ellipse(0, 0, _w - 2, _w * 0.7 - 2);
-    strokeWeight(5);
-    strokeCap(ROUND);
-    line(-_w / 2 + 4, 0, _w / 2 - 4, 0);
+    strokeWeight(_w / 20.0);
+    strokeCap(SQUARE);
+    line(-_w / 2 + 2, 0, _w / 2 - 2, 0);
     pop();
   } else {
     const nextN = _n / 1.8 - 1;
