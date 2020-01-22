@@ -59,7 +59,7 @@ function draw() {
   });
 }
 
-function mousePressed() {
+function touchStarted() {
   let l = random(10, 15);
   for (let i = 0; i < l; i++) {
     hirahiras.push({
