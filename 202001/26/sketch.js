@@ -32,7 +32,7 @@ function setup() {
 }
 
 function draw() {
-  background(255, 1);
+  // background(255, 1);
   nds.forEach(e => {
     e.draw();
   });

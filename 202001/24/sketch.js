@@ -21,6 +21,8 @@ function setup() {
       if (textGrap.get(x, y)[0] == 0) txtPts.push({ x: x, y: y });
     }
   }
+
+  print(p5.Font.textToPoints);
   print(txtPts.length);
 
   for (var i = 0; i < txtPts.length / 30; i++) {
