@@ -14,7 +14,7 @@ function setup() {
 }
 
 function draw() {
-  print(millPow);
+  // print(millPow);
   if (mouseIsPressed) {
     if (millPow < 100) {
       millPow += dist(mouseX, mouseY, pmouseX, pmouseY) / 100.0;

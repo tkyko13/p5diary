@@ -22,8 +22,8 @@ function setup() {
     }
   }
 
-  print(p5.Font.textToPoints);
-  print(txtPts.length);
+  // print(p5.Font.textToPoints);
+  // print(txtPts.length);
 
   for (var i = 0; i < txtPts.length / 30; i++) {
     a[i] = g({});

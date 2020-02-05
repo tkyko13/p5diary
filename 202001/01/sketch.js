@@ -6,6 +6,7 @@ function setup() {
 }
 
 function draw() {
+  text("Mouse Drag!", 20, 20);
   if (mouseIsPressed) {
     fill(random(), 1, 1, 0.2);
     let d = dist(pmouseX, pmouseY, mouseX, mouseY);

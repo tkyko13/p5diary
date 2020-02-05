@@ -44,7 +44,7 @@ function draw() {
 function myDraw(cnv, size) {
   cnv.textAlign(CENTER, CENTER);
 
-  print(size);
+  // print(size);
   cnv.textSize(size);
   cnv.textLeading(size / 1.5);
   cnv.text(mess, width / 2, height / 2);
