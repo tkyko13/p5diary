@@ -68,8 +68,11 @@
               <!-- <p>{{x}},{{y}}</p> -->
               <div class="gridItem">
                 <div v-if="c != 0">
-                  <p class="gridItemDay">{{c}}</p>
+                  <a v-bind:href="c < 10 ? './0'+c : './'+c">
+                    <p class="gridItemDay">{{c}}</p>
+                  </a>
                   <!-- <img src="https://placehold.jp/150x150.png" /> -->
+
                   <iframe v-bind:src="c < 10 ? '0'+c : c"></iframe>
                 </div>
                 <!-- <div v-else> -->
