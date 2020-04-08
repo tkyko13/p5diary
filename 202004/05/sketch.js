@@ -32,6 +32,8 @@ function setup() {
 function draw() {
   background(255);
 
+  ellipse(mouseX, mouseY, 10, 10);
+
   tempo += dist(mouseX, mouseY, pmouseX, pmouseY);
   tempo = tempo / 1.008;
 
