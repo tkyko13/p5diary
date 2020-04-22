@@ -1,0 +1,85 @@
+<!-- HTML Example -->
+<html>
+  <head>
+    <title>2020年4月1日</title>
+    <script src="../libs/p5.min.0.10.2.js"></script>
+    <script src="../libs/CCapture.all.min.js"></script>
+    <style>
+      /* body {
+        padding: 0;
+        margin: 0;
+      } */
+      #input_text {
+        width: 300px;
+      }
+      iframe {
+        width: 640px;
+        height: 480px;
+      }
+    </style>
+  </head>
+
+  <body ontouchmove="event.preventDefault()">
+    <div>
+      URL :
+      <input id="input_text" type="text" value="../202001/01" />
+      <input type="submit" onclick="onSubmitClick()" />
+    </div>
+
+    <div>
+      Save Path :
+      <input id="save_text" type="text" value="../202001/01" />
+    </div>
+
+    <iframe id="p5frame"></iframe>
+
+    <button onclick="onRecClick()">rec</button>
+
+    <script>
+      const loopFrame = 180;
+      let capturer;
+      let canvas;
+      let isCap = false;
+      let endFrame = 0;
+      function setup() {
+        capturer = new CCapture({
+          format: "gif",
+          workersPath: "./js/",
+          verbose: true,
+        });
+      }
+
+      function onSubmitClick() {
+        // console.log("a");
+        let p5frame = document.getElementById("p5frame");
+        let url = document.getElementById("input_text").value;
+        // console.log(url);
+        document.getElementsByTagName;
+        p5frame.src = url;
+      }
+
+      function onRecClick() {
+        canvas = document
+          .getElementById("p5frame")
+          .contentWindow.document.getElementsByTagName("canvas")[0];
+        // console.log(cnv);
+        capturer.start();
+        isCap = true;
+        endFrame = frameCount + loopFrame;
+      }
+
+      function draw() {
+        if (isCap) {
+          capturer.capture(canvas);
+          console.log(frameCount, endFrame);
+          if (frameCount > endFrame) {
+            isCap = false;
+            capturer.stop();
+            capturer.save();
+          }
+        }
+      }
+    </script>
+    <script src="sketch.js"></script>
+  </body>
+</html>
