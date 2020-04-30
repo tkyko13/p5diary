@@ -5,14 +5,21 @@ let deviceRot, deviceTouch;
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
 
-  device = new tramontana();
-  device.start("192.168.0.12", function (e) {
-    device.subscribeAttitude(10, function (ip, e) {
-      deviceRot = e;
+  createA("http://www.tramontana.xyz/", "tramontana library");
+  createDiv("");
+  createSpan("IP Address : ");
+  let inp = createInput("192.168.0.1");
+  let btn = createButton("connect");
+  btn.mousePressed(function () {
+    device = new tramontana();
+    device.start(inp.value(), function (e) {
+      device.subscribeAttitude(10, function (ip, e) {
+        deviceRot = e;
+      });
+      // device.subscribeTouch(true, function (ip, e) {
+      //   deviceTouch = e;
+      // });
     });
-    // device.subscribeTouch(true, function (ip, e) {
-    //   deviceTouch = e;
-    // });
   });
 
   rectMode(CENTER);
