@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.css"
+    />
+    <title>p5ギャラリー</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 5rem 1rem 5rem 1rem;
+      }
+      iframe {
+        border: 0;
+        width: 100%;
+        /* height: 40rem; */
+        /* margin-bottom: 10rem; */
+        /* height: auto; */
+      }
+      .gridItem {
+        /* width: 90px; */
+        /* height: 100%; */
+        /* background-color: #ffaaaa; */
+      }
+      .gridItemDay {
+        margin-bottom: 0;
+        margin-top: 5rem;
+      }
+    </style>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <section class="container" id="myHeader">
+        <h1>デイリーコーディングギャラリー</h1>
+        <li>
+          <a href="https://twitter.com/search?q=(%23dailycodingchallenge%20OR%20%23p5diary)%20(from%3Atkyko13)&src=saved_search_click"
+            >#p5diary on Twitter</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/tkyko13/p5diary">GitHub</a>
+        </li>
+        <li>
+          <a href="https://tkyk.net">tkyk.net</a>
+        </li>
+      </section>
+
+      <!-- カレンダーっぽく表示 -->
+      <section class="container" id="calender">
+        <h2>2020年 {{ month }}月</h2>
+
+        <div id="calenderMain">
+          <div class="row" v-for="(r, rind) of rowCol" :key="r">
+            <div class="column" v-for="(c, cind) of rowCol[rind]" :key="c">
+              <!-- <p>{{x}},{{y}}</p> -->
+              <div class="gridItem">
+                <div v-if="c != 0">
+                  <a v-bind:href="c < 10 ? './0'+c : './'+c">
+                    <p class="gridItemDay">{{c}}</p>
+                  </a>
+                  <!-- <img src="https://placehold.jp/150x150.png" /> -->
+
+                  <img v-bind:src="c < 10 ? '0'+c+'/capture.gif' : c+'/capture.gif'"></img>
+                </div>
+                <!-- <div v-else> -->
+                <!-- <div class="elseGridItem"></div> -->
+                <!-- <img src="https://placehold.jp/150x1.png" /> -->
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const year = 2020;
+      const month = 5;
+
+      const date = new Date(year, month - 1);
+      const endDate = new Date(year, month, 0); // 月の最後の日を取得
+      const endDayCount = endDate.getDate(); // 月の末日
+      const lastMonthEndDate = new Date(year, month - 1, 0); // 前月の最後の日の情報
+      const lastMonthendDayCount = lastMonthEndDate.getDate(); // 前月の末日
+      const startDay = date.getDay(); // 月の最初の日の曜日を取得
+      let dayCount = 1; // 日にちのカウント
+
+      let rowCol = [];
+
+      for (let w = 0; w < 6; w++) {
+        if (dayCount > endDayCount) break;
+        if (!rowCol[w]) rowCol[w] = [];
+
+        for (let d = 0; d < 7; d++) {
+          if (w == 0 && d < startDay) {
+            // 1行目で1日の曜日の前
+            // let num = lastMonthendDayCount - startDay + d + 1;
+            // rowCol[w][d] = num;
+            rowCol[w][d] = 0;
+          } else if (dayCount > endDayCount) {
+            // 末尾の日数を超えた
+            // let num = dayCount - endDayCount;
+            // rowCol[w][d] = num;
+            rowCol[w][d] = 0;
+            dayCount++;
+          } else {
+            rowCol[w][d] = dayCount;
+            dayCount++;
+          }
+        }
+      }
+
+      let app = new Vue({
+        el: "#app",
+        data: {
+          year: year,
+          month: month,
+          rowCol: rowCol,
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>
