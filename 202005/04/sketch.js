@@ -1,12 +1,26 @@
 // 5/4 め、目分量
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const wh = windowWidth < windowHeight ? windowWidth : windowHeight;
+  let cnv = createCanvas(wh, wh);
+
+  background(255);
+  func(5, 0, 0, wh);
 }
 
-function draw() {
-  background(255);
-  drawME(100, 100, 50, 100);
+// function draw() {}
+
+function func(depth, x, y, wh) {
+  if (random(5) < depth && depth > 0) {
+    depth--;
+    func(depth, x, y, wh / 2);
+    func(depth, x + wh / 2, y, wh / 2);
+    func(depth, x, y + wh / 2, wh / 2);
+    func(depth, x + wh / 2, y + wh / 2, wh / 2);
+  } else {
+    print(depth);
+    drawME(x + 5, y + 5, wh - 10, wh - 10);
+  }
 }
 
 function drawME(x, y, w, h) {
